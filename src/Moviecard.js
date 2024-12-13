@@ -3,8 +3,8 @@ class Moviecard extends React.Component {
     
     render(){
         console.log(this.props);   
-        const {movies, addStars}= this.props;     
-        const {title, plot,poster, price, rating,stars, fav,isInCart} = movies;
+        const {movies, addStars, remStars, toggleFav, toggleCart}= this.props;     
+        const {title, plot, poster, price, rating, stars, fav, isInCart} = movies;
         return(
             <div className="main">
                 <div className="movie-card">
@@ -22,7 +22,7 @@ class Moviecard extends React.Component {
                                 <img 
                                     className="str-btn" alt="decrease"
                                     src="https://cdn-icons-png.flaticon.com/128/43/43625.png"
-                                    onClick={this.decStar}/>
+                                    onClick={() => remStars(movies)}/>
                                 <img 
                                     className="stars" 
                                     alt="stars" 
@@ -35,8 +35,8 @@ class Moviecard extends React.Component {
 
                                     <span>{stars}</span>
                             </div>
-                            {fav? <button className="unfavourite-btn" onClick={this.handleFav}>Un-favourite</button>:<button className="favourite-btn" onClick={this.handleFav}>Favourite</button>}
-                            <button className={isInCart? "remove-cart-btn":"cart-btn"} onClick={this.handleCart}>{isInCart? "Remove from Cart":"Add to Cart"}</button>
+                            {fav? <button className="unfavourite-btn" onClick={()=> toggleFav(movies)}>Un-favourite</button>:<button className="favourite-btn" onClick={()=> toggleFav(movies)}>Favourite</button>}
+                            <button className={isInCart? "remove-cart-btn":"cart-btn"} onClick={()=> toggleCart(movies)}>{isInCart? "Remove from Cart":"Add to Cart"}</button>
                         </div>
                     </div>
                 </div>
